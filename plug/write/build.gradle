@@ -1,0 +1,50 @@
+plugins {
+    id "java"
+    id "com.gradleup.shadow" version "9.2.2"
+}
+
+ext {
+    type = "org.blab.oss.node.write.WriteNode"
+}
+
+group = "org.blab.oss.node"
+version = "0.0.0"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly(project(":node"))
+}
+
+tasks.shadowJar {
+    archiveFileName = "plugin.jar"
+}
+
+tasks.register("srv", Exec) {
+    workingDir "srv"
+    commandLine "npm", "run", "build"
+}
+
+tasks.register("package", Zip) {
+    dependsOn tasks.shadowJar
+    dependsOn tasks.srv
+
+    archiveFileName = "${type}.zip"
+
+    from "manifest.json", "build/libs/plugin.jar", "srv/dist"
+}
+
+tasks.register("install", Copy) {
+    dependsOn tasks.package
+
+    from "build/distributions/${type}.zip"
+    into "/usr/local/lib/i8/plug"
+}
+
+clean {
+    delete += "srv/node_modules"
+    delete += "srv/dist"
+    delete += "/usr/local/lib/i8/plug/${type}.zip"
+}

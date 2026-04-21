@@ -1,0 +1,5 @@
+{
+  "type": "org.blab.oss.node.write.WriteNode",
+  "name": "Writer",
+  "description": "Write value from standard input to port"
+}

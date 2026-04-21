@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'com.gradleup.shadow' version '9.2.2'
+}
+
+group = 'org.blab.oss.i8'
+version = rootProject.version
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor('org.projectlombok:lombok:1.18.42')
+    implementation(project(':node'))
+}
+
+tasks.shadowJar {
+    archiveFileName = 'boot.jar'
+
+    manifest {
+        attributes 'Main-Class': 'org.blab.oss.i8.boot.Bootloader'
+    }
+}
+
+tasks.register('install', Copy) {
+    dependsOn tasks.shadowJar
+
+    from 'build/libs/boot.jar'
+    into '/usr/local/lib/i8'
+}
+

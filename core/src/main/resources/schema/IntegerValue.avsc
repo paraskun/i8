@@ -1,0 +1,10 @@
+{
+  "type": "record",
+  "name": "IntegerValue",
+  "fields": [
+    {
+      "name": "value",
+      "type": "int"
+    }
+  ]
+}

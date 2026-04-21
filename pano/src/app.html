@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link href="/src/app.css" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {
+        "svelte": "/node_modules/.vite/deps/svelte.js",
+        "svelte/internal/client": "/node_modules/.vite/deps/svelte_internal_client.js"
+      }
+    }
+  </script>
+  %sveltekit.head%
+</head>
+
+<body data-sveltekit-preload-data="hover">
+  <div style="display: contents">%sveltekit.body%</div>
+</body>
+
+</html>

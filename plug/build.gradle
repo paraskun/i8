@@ -1,0 +1,4 @@
+tasks.register("clean", Delete) {
+    delete += "/usr/local/lib/i8/plug"
+    delete += "/usr/local/lib/i8/node"
+}

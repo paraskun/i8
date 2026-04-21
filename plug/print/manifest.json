@@ -1,0 +1,5 @@
+{
+  "type": "org.blab.oss.node.print.PrintNode",
+  "name": "Printer",
+  "description": "Print value from port to standard output"
+}
